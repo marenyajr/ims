@@ -20,7 +20,7 @@ return new class extends Migration
             $table->float('unit_price', 8, 2);
             $table->integer('quantity_in_stock');
             $table->string('image')->nullable();
-            $table->foreignId('supplier_id')->constrained(table: 'users', indexName: 'id');
+            $table->foreignId('supplier_id')->default(1)->constrained(table: 'users', indexName: 'id');
             $table->date('manufacture_date')->nullable();
             $table->date('expiry_date')->nullable();
             $table->timestamps();
