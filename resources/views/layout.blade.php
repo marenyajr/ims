@@ -13,7 +13,7 @@
         {{-- @vite('resources/css/app.css') --}}
         <script>
             /** @type {import('tailwindcss').Config} */
-tailwnd.config = {
+tailwind.config = {
     content: [
         "./resources/**/*.blade.php",
         "./resources/**/*.js",
