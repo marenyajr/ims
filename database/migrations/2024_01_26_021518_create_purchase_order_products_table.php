@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('purchase_order_products', function (Blueprint $table) {
             $table->id();
             $table->foreignId('inventory_id')->constrained();
-            $table->foreignId('purchaseOrder_id')->constrained(table: 'purchase_orders', indexName: 'id')->onDelete('cascade');
+            $table->foreignId('purchaseOrder_id')->constrained(table: 'purchase_orders')->onDelete('cascade');
             $table->float('unit_price', 8, 2);
             $table->integer('quantity_ordered');
             $table->string('capacity');
