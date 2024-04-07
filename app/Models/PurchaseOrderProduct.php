@@ -11,7 +11,7 @@ class PurchaseOrderProduct extends Model
     use HasFactory;
 
     protected $fillable = [
-            'inventory_id',
+            'product_id',
             'purchaseOrder_id',
             'unit_price',
             'quantity_ordered',

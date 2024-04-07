@@ -7,20 +7,22 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Inventory extends Model
+class Product extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-                            'product_name', 
-                            'product_category', 
-                            'description',
-                            'unit_price',
-                            'quantity_in_stock',
-                            'supplier_id',
-                            'image',
-                            'manufacture_date',
-                            'expiry_date'
+        'name',
+        'category',
+        'description',
+        'selling_price',
+        'unit_price',
+        'discount',
+        'quantity_in_stock',
+        'supplier_id',
+        'capacity',
+        'manufacture_date',
+        'expiry_date'
     ];
 
 
@@ -30,10 +32,6 @@ class Inventory extends Model
     }
 
 
-    public function capacity(): HasMany
-    {
-        return $this->hasMany(Capacity::class);
-    }
 
     public function purchaseOrder(): BelongsTo
     {
@@ -49,13 +47,8 @@ class Inventory extends Model
         // }
 
         if ($filters['search'] ?? false) {
-            $query->where('product_name', 'like', '%' . $filters['search'] . '%')
-            ->orWhere('product_category', 'like', '%' . $filters['search'] . '%');
+            $query->where('name', 'like', '%' . $filters['search'] . '%')
+                ->orWhere('category', 'like', '%' . $filters['search'] . '%');
         }
     }
-
-   
-
-
-    
 }

@@ -13,12 +13,13 @@ class OrderProduct extends Model
     use HasFactory;
 
     protected $fillable = [
-            'inventory_id',
+            'product_id',
             'order_id',
             'capacity',
             'unit_price',
             'quantity_ordered',
-            'discount'
+            'discount',
+            'subtotal'
     ];
 
     public function order(): BelongsTo
@@ -28,6 +29,6 @@ class OrderProduct extends Model
 
     public function inventory(): HasOne
     {
-        return $this->hasOne(Inventory::class);
+        return $this->hasOne(Product::class);
     }
 }

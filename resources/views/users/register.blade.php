@@ -1,25 +1,24 @@
-@extends('layout')
+@extends('admin.layout')
 @section('content')
 
 @php
     $email = "test@test"
 @endphp
 
-<div class="p-4 max-w-lg mx-auto mt-2"
+<div class="p-4 mt-20"
                 >
                     <header class="text-center mb-8">
-                        <h1 class="text-3xl font-extrabold uppercase text-gray-800">
-                    Tech-<span class="text-laravel">Trend</span>
-                </h1>
-                <p class="font-bold tracking-wider mt-3 text-xl leading-3">Create your account</p>
+                      
+                        <p class="font-bold tracking-wider mt-3 text-xl leading-3">Add New User</p>
                         
-                        <p class="my-3 tracking-wide leading-3">Let's get started by creating your account.</p>
+                        
                         </header>
 
-                    <form action="/users" method="POST">
+                    <form action="/admin/users" method="POST" class="">
                         @csrf
 
-                        <div class="mb-8">
+                        <div class="flex mb-12 px-8">
+                        <div class="w-3/4 mx-4">
                             
                             <input
                                 type="email"
@@ -34,7 +33,7 @@
                             @enderror
                         </div>
 
-                        <div class="mb-8">
+                        <div class="w-3/4 mx-4">
                             
                             <input
                                 type="text"
@@ -48,11 +47,31 @@
                                 <div class="text-red-500 text-xs tracking-wide mt-0">{{$message}}</div>
                             @enderror
                         </div>
-
+                        </div>
 
                         
 
-                        <div class="mb-8">
+                        
+                        <div class="flex px-8 mb-8">
+
+
+                            <div class="w-3/4 mx-4">
+                            
+                           
+                            <select name="role"  class="border border-gray-500 bg-transparent rounded p-3 w-full">
+                            <option value="" class="text-gray-600">Select Role</option>
+                             <option value="sales_person">Sales person</option>
+                            <option value="supplier">Supplier</option>
+                            <option value="admin">Administrator</option>
+                            
+                            </select>
+
+                             @error('role')
+                                <p class="text-red-300 text-xs mt-t">{{$message}}</p>
+                            @enderror
+                        </div>
+
+                        <div class="w-3/4 mx-4">
                             
                             <input
                                 type="password"
@@ -65,29 +84,15 @@
                             @enderror
                         </div>
 
-                        <div class="mb-1">
-                            
-                            <input
-                                type="password"
-                                class="border border-gray-500 rounded p-3 bg-transparent w-full"
-                                name="password_confirmation"
-                                placeholder="Confirm Password"
-                            />
-                            @error('password_confirmation')
-                                <div class="text-red-500 text-xs mt-0">{{$message}}</div>
-                            @enderror
+                        
                         </div>
-                        <p class="text-sm tracking-wider mb-6 mx-auto w-5/6">
-                            By clicking Create Account, you acknowledge you have you have read and consented to the 
-                            <span class="underline text-laravel">Terms</span> and 
-                            <span class="underline text-laravel">Conditions.</span>
-                        </p>
+                        
                         <div class="mb-6 w-3/4 mx-auto">
                             <button
                                 type="submit"
                                 class="w-full text-lg tracking-wide mx-auto bg-laravel text-white rounded py-3 px-4 hover:shadow-2xl transition-transform transform hover:scale-105 font-semibold"
                             >
-                                Create Account
+                                Add User
                             </button>
                         </div>
 

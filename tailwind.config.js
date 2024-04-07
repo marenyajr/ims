@@ -8,11 +8,11 @@ export default {
     theme: {
         extend: {
             colors: {
-                laravel: "#E07E1B",
+                laravel: "#C15D5D",
                 laraveld: "#E07E1D",
             },
             scale: {
-                "101": "1.01",
+                101: "1.01",
             },
         },
     },

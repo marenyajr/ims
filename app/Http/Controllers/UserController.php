@@ -19,24 +19,26 @@ class UserController extends Controller
     }
 
     public function store(Request $request){
-      
-        $userInfo = $request->validate([
-            'name' => 'required',
-            'user_name' => 'required|unique:users',
-            'email' => 'email|required|unique:users,email',
-            'password' => 'required|min:5|confirmed'
-        ]);
 
-        $userInfo['role_id'] = 1;
+        // dd($request->all());
+        $userInfo = $request->validate(['name' => 'required',
+            'email' => 'email|required|unique:users,email',
+            'password' => 'required|min:5',
+            'role' => 'required'
+        ]);
+       
+       
         $userInfo['password'] = bcrypt($userInfo['password']);
         $user = User::create($userInfo);
 
-        auth()->login($user);
+        $user->addRole($userInfo['role']);
+     
 
-        return redirect('/')->with('message', 'Account created successfully');
+        return back()->with('message', 'Account created successfully');
     }
 
     public function authenticate(Request $request){
+       
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
@@ -45,7 +47,12 @@ class UserController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            return redirect()->intended('/');
+            if (auth()->user()->hasRole('admin')) {
+                return redirect()->intended('/admin');
+            } else {
+                return redirect()->intended('/');
+            }
+            
         }
 
         return back()->withErrors([

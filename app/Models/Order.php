@@ -12,7 +12,7 @@ class Order extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'total_amount', 'status'];
+    protected $fillable = ['user_id', 'total_amount', 'no_of_items'];
 
     public function user(): BelongsTo
     {
@@ -24,10 +24,6 @@ class Order extends Model
         return $this->hasMany(OrderProduct::class);
     }
 
-    public function shipping(): HasOne
-    {
-        return $this->hasOne(Shipping::class);
-    }
-
+   
 
 }

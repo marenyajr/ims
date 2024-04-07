@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->float('total_amount', 8, 2);
-            $table->string('status');
+            $table->integer('no_of_items');
             $table->timestamps();
         });
     }
